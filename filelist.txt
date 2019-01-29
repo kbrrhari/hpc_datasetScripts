@@ -1,0 +1,16 @@
+File:                            Pattern:
+======                           =========
+bufr_d files:                    gpsro,goesnd,goesfv,lbhrs2,lbamua,lbamub,lbhrs3,lbhrs4,lbhms,
+                                 airsev,sevcsr,mtiasi,esamua,esamub.eshrs3,ssmisu,amsre,atms,
+                                 cris,saphir,gmi,ssmit
+
+Gfs folder:                      prepbufr: gfs.t${hr}z.prepbufr.nr
+                                 bufr_d files: (see list above)
+                                 sf00 or atmf00: gfs.t${hr}z.atmf000.nemsio 
+                                 sfcanl:gfs.t${hr}z.sfcanl.nemsio  
+                                 grib files: gfs.t${hr}z.pgrb2.0p25.f$i 3hourly till 126 hours
+
+GDAS folder:                     grib files: gdas.t${hr}z.pgrb2.0p25.f0$i hourly till first 6hr and then one 9th hr file
+                                 bias correction: gdas.t${hr}z.abias and gdas.t${hr}z.abias_pc
+                                 spectral files (sf or atmf): gdas.t${hr}z.atmf0$i.nemsio 3hourly from 3 to 9 (inclusive)
+enKF folder:                     gdas.t${hr}z.atmf0${hr}s.mem0$i.nemsio, i from 1 to 80 of unit interval 

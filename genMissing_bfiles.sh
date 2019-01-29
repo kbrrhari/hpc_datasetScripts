@@ -7,7 +7,7 @@
 ##########################################################################################
 
 root_dir="/incois_ncmrwfx/incois/hycom/dataset/rtofsINCOISarch_remapped" 
-dt="2018-12-15"
+dt="2018-12-17"
 yyyymmdd=$(date -d "$dt" +"%Y%m%d")
 doy=$(date -d "$dt" +"%j")
 
