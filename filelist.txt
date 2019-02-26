@@ -1,8 +1,8 @@
 File:                            Pattern:
 ======                           =========
-bufr_d files:                    gpsro,goesnd,goesfv,lbhrs2,lbamua,lbamub,lbhrs3,lbhrs4,lbhms,
+bufr_d files:                    gpsro,goesnd,goesfv,1bhrs2,1bamua,1bamub,1bhrs3,1bhrs4,1bmhs,
                                  airsev,sevcsr,mtiasi,esamua,esamub.eshrs3,ssmisu,amsre,atms,
-                                 cris,saphir,gmi,ssmit
+                                 cris,saphir,gmi,ssmit,avcsam,avcspm
 
 Gfs folder:                      prepbufr: gfs.t${hr}z.prepbufr.nr
                                  bufr_d files: (see list above)
