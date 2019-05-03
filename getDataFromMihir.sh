@@ -1,12 +1,12 @@
 getData() {
   # date="20181008" # for single date
   date="$1" # pass dates through loop
-  DIR="/incois_ncmrwfx/incois/hycom/dataset/gaja_IMD"
+  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/fani_IMD"
   # SORC="/home/hycom/IMD_GFS"
   SORC="/home/imdgfs/shared/data/T1534/pgrb/0p25deg"
   for hr in {00..18..06}
   do
-    DEST="${DIR}/gdas.${date}${hr}"
+    DEST="${DIR}/gfs.${date}${hr}"
     if [[ -d "$DEST" ]]
     then
       echo "folder exists"
@@ -39,8 +39,8 @@ getData() {
   done
 }
 
-dt="20181110"
-fdt="20181120"
+dt="20190503"
+fdt="20190504"
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"
