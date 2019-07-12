@@ -9,8 +9,8 @@
 # dt ---> date for which linking needs to be done
 #############################################
 
-source_dir="/incois_ncmrwfx/incois_tccsym/FORCING/91B/incois_hycom_raw" 
-dt="2019-05-03"
+source_dir="/incois_ncmrwfx/incois_tccsym/FORCING/vayu_IMD/incois_hycom_raw" 
+dt="2019-06-14"
 yyyymmdd=$(date -d "$dt" +"%Y%m%d")
 
 if [[ -d "$source_dir/$yyyymmdd" ]]
@@ -21,7 +21,7 @@ else
   # exit 1
 fi
 
-dest_dir="/incois_ncmrwfx/incois_tccsym/FORCING/91B/incois_hycom"
+dest_dir="/incois_ncmrwfx/incois_tccsym/FORCING/vayu_IMD/incois_hycom"
 mkdir -p ${dest_dir}/incois_hycom.${yyyymmdd}
 cd ${dest_dir}/incois_hycom.${yyyymmdd}
 echo "changing to directory: $(pwd)"
