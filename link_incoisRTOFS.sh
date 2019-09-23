@@ -9,8 +9,8 @@
 # dt ---> date for which linking needs to be done
 #############################################
 
-source_dir="/incois_ncmrwfx/incois_tccsym/FORCING/vayu_IMD/incois_hycom_raw" 
-dt="2019-06-14"
+source_dir="/incois_ncmrwfx/incois_tccsym/FORCING/hikaa_IMD/incois_hycom_raw" 
+dt="2019-09-23"
 yyyymmdd=$(date -d "$dt" +"%Y%m%d")
 
 if [[ -d "$source_dir/$yyyymmdd" ]]
@@ -18,10 +18,10 @@ then
   echo "Yes! source dir: $source_dir/$yyyymmdd exists"
 else
   echo "directory: $source_dir/$yyyymmdd does not exists" >&2
-  # exit 1
+  exit 1
 fi
 
-dest_dir="/incois_ncmrwfx/incois_tccsym/FORCING/vayu_IMD/incois_hycom"
+dest_dir="/incois_ncmrwfx/incois_tccsym/FORCING/hikaa_IMD/incois_hycom"
 mkdir -p ${dest_dir}/incois_hycom.${yyyymmdd}
 cd ${dest_dir}/incois_hycom.${yyyymmdd}
 echo "changing to directory: $(pwd)"
