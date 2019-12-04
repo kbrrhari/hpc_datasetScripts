@@ -1,6 +1,6 @@
 getData() {
   date="$1" # pass dates through loop
-  DEST="/incois_ncmrwfx/incois_tccsym/FORCING/hikaa_IMD/TCvitals"
+  DEST="/incois_ncmrwfx/incois_tccsym/FORCING/kyarr_IMD/TCvitals"
 
   USERNAME=rsmcnd
   PASSWORD=rsmcnd
@@ -15,12 +15,12 @@ getData() {
   fi
   echo "Downloading file for date ${date}"
   dthr=$(date -d "$date" +"%d%H")
-  wget -t 3 --user=$USERNAME --password="$PASSWORD" -P $DEST ftp://${IP}/gdas1.t${dthr}00z.syndata.tcvital.txt  
+  wget -t 3 --user=$USERNAME --password="$PASSWORD" -P $DEST ftp://${IP}/gdas1.t${dthr}z.syndata.tcvital.txt  
 }
 
 #User defined ---> dt,fdt and storm folder name
-dt="20190922 00"
-fdt="20190924 00"
+dt="20191030 00"
+fdt="20191102 00"
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"

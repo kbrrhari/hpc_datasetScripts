@@ -3,7 +3,7 @@
 clear
 module load cdo/1.8.1_netcdf
 cd /incois_ncmrwfx/incois_tccsym/scripts/
-source setenv4_archv2nc.com
+source setenv4_archv2nc_SJO.com
 
 fix_dir="/incois_ncmrwfx/incois/hycom/HWRF_parent/hwrfrun/fix/hwrf-hycom"
 ln -sf $fix_dir/hwrf_rtofs_hin40.basin.regional.depth.a regional.depth.a 
@@ -118,20 +118,24 @@ E-o-D
     rm -rf $DEST/*ts.nc
     echo "<------Setting the attributes correct------>"
     cdo setattribute,source="HWRFv3.9a",experiment="$expt",cycle="$cyc",SID="$sid",history="processed using HYCOMab2nc.sh" $DEST/hycom_TS_.nc $DEST/hycom_TS.nc
-    rm -rf $DEST/hycom_TS_.nc
+    if [[ $? -eq 0 ]]; then
+      rm -rf $DEST/hycom_TS_.nc
+    else
+      echo "<------Global attribute not set------->"
+    fi
   fi
 }
 
 
-idt="2019-04-27 00"
-fdt="2019-05-03 00"
+idt="2019-06-10 06"
+fdt="2019-06-10 12"
 dt="$idt"
 while [[ ${dt} != ${fdt} ]]
 do
   echo " <======selecting cycle: $dt======>"
   cyc_=$(date -d "${dt}" +"%Y%m%d%H")
-  expt_="incoisHYCOMcoupled_gsi_DefaultPHY"
-  sid_="02B"
+  expt_="process_study_HYCOMcoupled"
+  sid_="01A"
   gen_netCDF "$expt_" "$cyc_" "$sid_"
   dt=$(date -d "${dt} +6 hours" +"%Y-%m-%d %H")
 done

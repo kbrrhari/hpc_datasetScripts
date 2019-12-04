@@ -1,6 +1,6 @@
 getData() {
   date="$1" # pass dates through loop
-  DEST="/incois_ncmrwfx/incois_tccsym/FORCING/hikaa_IMD/incois_hycom_raw"
+  DEST="/incois_ncmrwfx/incois_tccsym/FORCING/kyarr_IMD/incois_hycom_raw"
   SORC="/home/hycom/WRITE_HYCOM"
   if [[ -d "$DEST" ]]
   then
@@ -16,8 +16,8 @@ getData() {
 }
 
 #User defined ---> dt,fdt and storm folder name
-dt="20190923"
-fdt="20190924"
+dt="20191108"
+fdt="20191111"
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"

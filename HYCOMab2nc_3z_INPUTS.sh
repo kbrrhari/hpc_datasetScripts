@@ -3,7 +3,8 @@
 clear
 module load cdo/1.8.1_netcdf
 cd /incois_ncmrwfx/incois_tccsym/scripts/
-source setenv4_archv2nc.com
+
+source setenv4_archv2nc_SJO.com
 
 fix_dir="/incois_ncmrwfx/incois/hycom/HWRF_parent/hwrfrun/fix/hwrf-hycom"
 ln -sf $fix_dir/hwrf_rtofs_hin40.basin.regional.depth.a regional.depth.a 
@@ -15,7 +16,7 @@ gen_netCDF() {
   init="$1"
   sid="$2"
   input="/incois_ncmrwfx/incois_tccsym/FORCING"
-  SORC="$input/91B/incois_hycom_raw/$init"
+  SORC="$input/vayu_IMD/incois_hycom_raw/$init"
   DEST="$SORC/input_NetCDF"
 
   ##---optional title and institution---#
@@ -113,23 +114,23 @@ gen_netCDF() {
   echo "<------Merging files along time dimension------>"
   cdo mergetime $DEST/*.nc $DEST/hycom_TS_.nc
   if [[ $? -eq 0 ]]; then
-    echo "<------Deleting all single netCDF files------>"
-    rm -rf $DEST/*ts.nc
-    echo "<------Setting the attributes correct------>"
-    cdo setattribute,source="Incois_Hycom",initialized="$init",SID="$sid",history="processed using HYCOMab2nc_3z_INPUTS.sh" $DEST/hycom_TS_.nc $DEST/hycom_TS.nc
-    rm -rf $DEST/hycom_TS_.nc
+   echo "<------Deleting all single netCDF files------>"
+   rm -rf $DEST/*ts.nc
+   echo "<------Setting the attributes correct------>"
+   cdo setattribute,source="Incois_Hycom",initialized="$init",SID="$sid",history="processed using HYCOMab2nc_3z_INPUTS.sh" $DEST/hycom_TS_.nc $DEST/hycom_TS.nc
+   rm -rf $DEST/hycom_TS_.nc
   fi
 }
 
 
-idt="2019-04-24"
-fdt="2019-05-03"
+idt="2019-06-10"
+fdt="2019-06-17"
 dt="$idt"
 while [[ ${dt} != ${fdt} ]]
 do
   echo " <======selecting cycle: $dt======>"
   init_=$(date -d "${dt}" +"%Y%m%d")
-  sid_="02B"
+  sid_="01A"
   gen_netCDF "$init_" "$sid_"
   dt=$(date -d "${dt} +1 day" +"%Y-%m-%d")
 done

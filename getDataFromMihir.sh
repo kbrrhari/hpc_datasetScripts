@@ -1,7 +1,7 @@
 getData() {
   # date="20181008" # for single date
   date="$1" # pass dates through loop
-  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/hikaa_IMD"
+  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/kyarr_IMD"
   # SORC="/home/hycom/IMD_GFS"
   SORC="/home/imdgfs/shared/data/T1534/pgrb/0p25deg"
   for hr in {00..18..06}
@@ -20,6 +20,8 @@ getData() {
     rsync -auvhP mihir:${SORC}/gdas.${date}${hr}/gdas.t${hr}z.pgrb2.0p25.f{000..129..03} $DEST/
     # grib
     rsync -auvhP mihir:${SORC}/gdas.${date}${hr}/gdas.t${hr}z.pgrb2.0p25.f{000..006..01} $DEST/
+
+    ##########Commented as we are pulling below data using getGDASdataFromMihir.sh#############
     # nemsio
     # rsync -auvhP mihir:${SORC}/gdas.${date}${hr}/gdas1.t${hr}z.sfcanl.nemsio $DEST/
     # rsync -auvhP mihir:${SORC}/gdas.${date}${hr}/gdas.t${hr}z.atmf000.nemsio $DEST/
@@ -36,11 +38,12 @@ getData() {
     # do
       # rsync -auvhP mihir:${SORC}/gdas.${date}${hr}/*t${hr}*${f}*.bufr_d $DEST/
     # done
+    ######################################################
   done
 }
 
-dt="20190923"
-fdt="20190924" # end date exclusive
+dt="20191108"
+fdt="20191111" # end date exclusive
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"
