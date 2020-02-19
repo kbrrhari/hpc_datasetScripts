@@ -115,7 +115,7 @@ E-o-D
   cdo mergetime $DEST/*.nc $DEST/hycom_TS_.nc
   if [[ $? -eq 0 ]]; then
     echo "<------Deleting all single netCDF files------>"
-    rm -rf $DEST/*ts.nc
+    rm -rf $DEST/arch*.nc
     echo "<------Setting the attributes correct------>"
     cdo setattribute,source="HWRFv3.9a",experiment="$expt",cycle="$cyc",SID="$sid",history="processed using HYCOMab2nc.sh" $DEST/hycom_TS_.nc $DEST/hycom_TS.nc
     if [[ $? -eq 0 ]]; then
@@ -127,15 +127,15 @@ E-o-D
 }
 
 
-idt="2019-06-10 06"
-fdt="2019-06-10 12"
+idt="2019-10-24 12"
+fdt="2019-10-31 12"
 dt="$idt"
 while [[ ${dt} != ${fdt} ]]
 do
   echo " <======selecting cycle: $dt======>"
   cyc_=$(date -d "${dt}" +"%Y%m%d%H")
-  expt_="process_study_HYCOMcoupled"
-  sid_="01A"
+  expt_="incoisHYCOMcoupled_gsi_DefaultPHY"
+  sid_="03A"
   gen_netCDF "$expt_" "$cyc_" "$sid_"
   dt=$(date -d "${dt} +6 hours" +"%Y-%m-%d %H")
 done
