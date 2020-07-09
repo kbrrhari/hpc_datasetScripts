@@ -35,7 +35,9 @@ gen_netCDF() {
   for af in $SORC/archv*.a
   do
     ydh=$(echo ${af#*archv.*} | cut -d '.' -f 1)
-    export CDF023=${DEST}/archs.${ydh}_2d_EminusP.nc
+    echo "<============${ydh}=============>"
+    echo "<============${af}=============>"
+    export CDF023=${DEST}/archv.${ydh}_2d_EminusP.nc
     /moes/home/hycom/bin/archv2ncdf2d << E-o-D
 $af
 netCDF
@@ -53,7 +55,7 @@ netCDF
    0    'jdmp  ' = j-extent of plotted subregion (<=jdm; 0 implies jdm) 
    0    'botio ' = bathymetry       I/O unit (0 no I/O) 
    0    'flxio ' = surf. heat flux  I/O unit (0 no I/O) 
-  23    'empio ' = surf. evap-pcip  I/O unit (0 no I/O) 
+   0    'empio ' = surf. evap-pcip  I/O unit (0 no I/O) 
    0    'ttrio ' = surf. temp trend I/O unit (0 no I/O) 
    0    'strio ' = surf. saln trend I/O unit (0 no I/O) 
    0    'icvio ' = ice coverage     I/O unit (0 no I/O) 
@@ -77,7 +79,7 @@ netCDF
    0    'wvlio ' = layer k   w-vel. I/O unit (0 no I/O) 
    0    'infio ' = layer k   i.dep. I/O unit (0 no I/O) 
    0    'thkio ' = layer k   thick. I/O unit (0 no I/O) 
-   0    'temio ' = layer k   temp   I/O unit (0 no I/O) 
+  23    'temio ' = layer k   temp   I/O unit (0 no I/O) 
    0    'salio ' = layer k   saln.  I/O unit (0 no I/O) 
    0    'tthio ' = layer k   dens,  I/O unit (0 no I/O) 
    0    'sfnio ' = layer k  strmfn. I/O unit (0 no I/O) 
@@ -100,6 +102,7 @@ E-o-D
 }
 
 
+# gen_netCDF "aaa_" "bbbb_" "bbbbbsd_"
 idt="2019-06-13 00"
 fdt="2019-06-13 06"
 dt="$idt"

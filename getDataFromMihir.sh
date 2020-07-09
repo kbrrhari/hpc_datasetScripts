@@ -1,7 +1,7 @@
 getData() {
   # date="20181008" # for single date
   date="$1" # pass dates through loop
-  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/kyarr_IMD"
+  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/nisarga_IMD"
   # SORC="/home/hycom/IMD_GFS"
   SORC="/home/imdgfs/shared/data/T1534/pgrb/0p25deg"
   for hr in {00..18..06}
@@ -42,8 +42,8 @@ getData() {
   done
 }
 
-dt="20191108"
-fdt="20191111" # end date exclusive
+dt="20200603"
+fdt="20200604" # end date exclusive
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"

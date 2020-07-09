@@ -1,6 +1,6 @@
 getData() {
   date="$1" # pass dates through loop
-  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/kyarr_IMD"
+  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/nisarga_IMD"
   # SORC="/home/hycom/IMD_GFS"
   SORC="/home/gfsprod/data/gdasv14/gdas/prod"
   for hr in {00..18..06}
@@ -36,8 +36,8 @@ getData() {
   done
 }
 
-dt="20191108"
-fdt="20191111"
+dt="20200603"
+fdt="20200604"
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"

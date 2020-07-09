@@ -127,15 +127,15 @@ E-o-D
 }
 
 
-idt="2019-10-24 12"
-fdt="2019-10-31 12"
+idt="2019-06-13 00"
+fdt="2019-06-13 06"
 dt="$idt"
 while [[ ${dt} != ${fdt} ]]
 do
   echo " <======selecting cycle: $dt======>"
   cyc_=$(date -d "${dt}" +"%Y%m%d%H")
-  expt_="incoisHYCOMcoupled_gsi_DefaultPHY"
-  sid_="03A"
+  expt_="incoisHYCOMcoupledIMD_gsi_IMDtcvitals"
+  sid_="01A"
   gen_netCDF "$expt_" "$cyc_" "$sid_"
   dt=$(date -d "${dt} +6 hours" +"%Y-%m-%d %H")
 done
