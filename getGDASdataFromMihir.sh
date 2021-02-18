@@ -1,9 +1,9 @@
 getData() {
   date="$1" # pass dates through loop
-  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/amphan_IMD"
+  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/amphan_IMD/newGDASFiles"
   # SORC="/home/hycom/IMD_GFS"
   # SORC="/home/gfsprod/data/gdasv14/gdas/prod"
-  SORC="/scratch/akhil/AMPHAN"
+  SORC="/scratch/imdhwrf/AMPHAN"
   for hr in {00..18..06}
   do
     DEST="${DIR}/gdas.${date}${hr}"
@@ -38,7 +38,7 @@ getData() {
 }
 
 dt="20200515"
-fdt="20200620"
+fdt="20200521"
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"
