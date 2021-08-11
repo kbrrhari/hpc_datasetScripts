@@ -1,6 +1,6 @@
 getData() {
   date="$1" # pass dates through loop
-  DEST="/incois_ncmrwfx/incois_tccsym/FORCING/nisarga_IMD/TCvitals"
+  DEST="/incois_ncmrwfx/incois_tccsym/FORCING/tauktae_IMD/TCvitals"
 
   USERNAME=rsmcnd
   PASSWORD=rsmcnd
@@ -19,8 +19,8 @@ getData() {
 }
 
 #User defined ---> dt,fdt and storm folder name
-dt="20200601 00"
-fdt="20200604 00" # end date non-inclusive
+dt="20210515 12"
+fdt="20210517 00" # end date non-inclusive
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"

@@ -1,11 +1,11 @@
 set -e
 
-sname="fani" #storm name
-SRC="/moes/home/hycom/WW3_force/$sname" #HWRF data source
+sname="yaas" #storm name
+SRC="/incois_ncmrwfx/incois/hycom/WW3_force/$sname" #HWRF data source
 SRC_GFS="/incois_ncmrwfx/incois_tccsym/FORCING/${sname}_IMD" #GFS data source
 
-start_date="2019042700"
-end_date="2019050306"
+start_date="2021052406"
+end_date="2021052618"
 
 res=0.06 #resolution of merged data
 
@@ -49,15 +49,19 @@ import pathlib
 path = pathlib.Path('/incois_ncmrwfx/incois_tccsym/HWRFwindsMerge/$sname')
 
 dsGFS = xr.open_dataset('$sname.$datetime.gfs.${res/./p}.grb2',engine='cfgrib',backend_kwargs={'indexpath':''})
-dsStorm = xr.open_dataset('$sname.$datetime.storm.${res/./p}.grb2',engine='cfgrib',backend_kwargs={'indexpath':''}).reindex(step=dsGFS.step)
-dsSynoptic = xr.open_dataset('$sname.$datetime.synoptic.${res/./p}.grb2',engine='cfgrib',backend_kwargs={'indexpath':''}).reindex(step=dsGFS.step)
+dsStorm = xr.open_dataset('$sname.$datetime.storm.${res/./p}.grb2',engine='cfgrib',backend_kwargs={'indexpath':''})
+dsSynoptic = xr.open_dataset('$sname.$datetime.synoptic.${res/./p}.grb2',engine='cfgrib',backend_kwargs={'indexpath':''})
 
+tax = dsGFS.indexes['step'].intersection(dsSynoptic.indexes['step'])
+dsGFS = dsGFS.reindex(step=tax)
+dsStorm = dsStorm.reindex(step=tax)
+dsSynoptic = dsSynoptic.reindex(step=tax)
 
 dsInner = dsStorm.where(dsStorm.notnull(),dsSynoptic)
 dsFull = dsInner.where(dsInner.notnull(),dsGFS)
 
 dsF = dsFull.drop_vars(['heightAboveGround','time']).rename_vars({'valid_time':'time'}).swap_dims({'step':'time'})
-dsF.to_netcdf(path/'$sname.$datetime.windsMerged.${res/./p}.nc')
+dsF.to_netcdf(path/'$sname.$datetime.windsMerged.${res/./p}.nc',encoding={'time':{'calendar':'proleptic_gregorian'}})
 EOF
 }
 
