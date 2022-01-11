@@ -1,6 +1,6 @@
 getData() {
   date="$1" # pass dates through loop
-  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/yaas_IMD"
+  DIR="/incois_ncmrwfx/incois_tccsym/FORCING/jawad_IMD"
   for hr in {00..18..06}
   do
     DEST="${DIR}/gdas.${date}${hr}"
@@ -32,6 +32,8 @@ getData() {
       rsync -auvhP mihir:${SORC}/gdas.${date}/gdas1.t${hr}z.sfcanl.nemsio $DEST/
       rsync -auvhP mihir:${SORC}/gdas.${date}/gdas.t${hr}z.atmf000.nemsio $DEST/
       rsync -auvhP mihir:${SORC}/gdas.${date}/gdas.t${hr}z.atmf{003..009..003}.nemsio $DEST/
+      # grib
+      rsync -auvhP mihir:${SORC}/gdas.${date}/gdas.t${hr}z.pgrb2.0p25.f{000..009..01} $DEST/
     else
       # SORC="/home/hycom/IMD_GFS"
       SORC="/scratch/akhil/GDAS"
@@ -41,8 +43,8 @@ getData() {
   done
 }
 
-dt="20210525"
-fdt="20210528"
+dt="20211201"
+fdt="20211205"
 while [[ ${dt} != ${fdt} ]]
 do
   echo "<======Downloading for date : ${dt}======>"
